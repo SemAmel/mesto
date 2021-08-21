@@ -1,0 +1,11 @@
+.gallery__heart {
+  width: 22px;
+  height: 19px;
+  margin-right: 4px;
+  align-self: center;
+  transition: opacity 1s;
+}
+
+.gallery__heart:hover {
+  opacity: .5;
+}

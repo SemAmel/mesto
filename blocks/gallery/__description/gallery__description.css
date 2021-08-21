@@ -1,0 +1,7 @@
+.gallery__description {
+  display: flex;
+  align-content: flex-start;
+  justify-content: space-between;
+  margin: 25px 21px 31px;
+  width: auto;
+}
