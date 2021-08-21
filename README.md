@@ -1,6 +1,6 @@
 # Проект: **Место**
 
-<img src="./images/logo.svg" width="183" height="32">
+<img src="./images/logo-black.svg" width="183" height="32">
 
 Проект посвящён одностраничному сайту о различных красивых местах.
 
