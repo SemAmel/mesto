@@ -1,4 +1,4 @@
-.popup__name {
+.popup__input {
   font-family: 'Inter', 'Arial', 'sans-serif';
   font-style: normal;
   font-weight: normal;
@@ -10,17 +10,26 @@
   outline: none;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
+  
 }
 
-.popup__name:focus {
+.popup__input:last-of-type {
+  margin-top: 30px;
+}
+
+.popup__input:focus {
   border: 2px solid rgba(111, 171, 240);
 }
 
 @media all and (max-width: 550px) {
-  .popup__name {
+  .popup__input {
     font-size: 14px;
     line-height: 17px;
     margin: 0 auto;
     width: 238px;
+  }
+
+  .popup__input:last-of-type {
+    margin-top: 30px;
   }
 }

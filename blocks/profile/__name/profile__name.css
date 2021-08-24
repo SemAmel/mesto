@@ -8,10 +8,10 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  max-width: 400px;
+  max-width: 350px;
 }
 
-@media all and (max-width: 400px) {
+@media all and (max-width: 430px) {
   .profile__name {
     font-size: 27px;
     line-height: 33px;

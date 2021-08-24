@@ -11,10 +11,10 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 400px;
+  max-width: 350px;
 }
 
-@media all and (max-width: 400px) {
+@media all and (max-width: 430px) {
   .profile__about {
     font-size: 14px;
     line-height: 17px;

@@ -6,7 +6,7 @@
   position: relative;
 }
 
-@media all and (max-width: 1070px) {
+@media all and (max-width: 1120px) {
   .profile {
     margin-top: 42px;
     margin-bottom: 36px;

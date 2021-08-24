@@ -19,20 +19,9 @@
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__about">Исследователь океана</p>
-          <input class="profile__edit-button" type="image" src="./images/edit-button.svg" alt="редактировать">
+          <button class="profile__edit-button" type="button"></button>
         </div>
-        <input class="profile__add-button" type="image" src="./images/add-button.svg" alt="добавить">
-      </section>
-
-      <section class="popup">
-        <div class="popup__overlay"></div>
-        <div class="popup__form">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__name" type="text">
-          <input class="popup__about" type="text">
-          <input class="popup__save-button" type="image" src="./images/save-button.svg" alt="сохранить">
-          <input class="popup__close-button" type="image" src="./images/close-icon.svg" alt="закрыть">
-        </div>
+        <button class="profile__add-button" type="button"><img class="profile__plus" src="./images/add-button.svg" alt="плюс"></button>
       </section>
 
       <section class="gallery">
@@ -41,7 +30,7 @@
             <img class="gallery__image" src="./images/karachaevsk.jpg" alt="карачаевск">
             <div class="gallery__description">
               <h2 class="gallery__place">Карачаевск</h2>
-              <input class="gallery__heart" type="image" src="./images/heart.svg" alt="сердечко">
+              <button class="gallery__heart" type="button"></button>
             </div> 
           </li>
 
@@ -49,7 +38,7 @@
             <img class="gallery__image" src="./images/mountain-elbrus.jpg" alt="гора эльбрус">
             <div class="gallery__description">
               <h2 class="gallery__place">Гора Эльбрус</h2>
-              <input class="gallery__heart" type="image" src="./images/heart.svg" alt="сердечко">
+              <button class="gallery__heart" type="button"></button>
             </div> 
           </li>
 
@@ -57,7 +46,7 @@
             <img class="gallery__image" src="./images/dombay.jpg" alt="домбай">
             <div class="gallery__description">
               <h2 class="gallery__place">Домбай</h2>
-              <input class="gallery__heart" type="image" src="./images/heart.svg" alt="сердечко">
+              <button class="gallery__heart" type="button"></button>
             </div> 
           </li>
 
@@ -65,7 +54,7 @@
             <img class="gallery__image" src="./images/baikal.jpg" alt="байкал">
             <div class="gallery__description">
               <h2 class="gallery__place">Байкал</h2>
-              <input class="gallery__heart" type="image" src="./images/heart.svg" alt="сердечко">
+              <button class="gallery__heart" type="button"></button>
             </div> 
           </li>
 
@@ -73,7 +62,7 @@
             <img class="gallery__image" src="./images/iceland.jpg" alt="исландия">
             <div class="gallery__description">
               <h2 class="gallery__place">Исландия</h2>
-              <input class="gallery__heart" type="image" src="./images/heart.svg" alt="сердечко">
+              <button class="gallery__heart" type="button"></button>
             </div> 
           </li>
 
@@ -81,7 +70,7 @@
             <img class="gallery__image" src="./images/georgia.jpg" alt="грузия">
             <div class="gallery__description">
               <h2 class="gallery__place">Грузия</h2>
-              <input class="gallery__heart" type="image" src="./images/heart.svg" alt="сердечко">
+              <button class="gallery__heart" type="button"></button>
             </div> 
           </li>
         </ul>
@@ -93,6 +82,19 @@
     </footer>
 
   </div>
+
+  <div class="popup">
+    <div class="popup__container">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form class="popup__form">
+        <input class="popup__input popup__input_type_name" type="text" name="name">
+        <input class="popup__input popup__input_type_about" type="text" name="about">
+        <button class="popup__save-button" type="submit">Сохранить</button>
+      </form>
+      <button class="popup__close-button" type="button"></button>
+    </div>
+  </div>
+
   <script src="./index.js"></script>
 </body>
 </html>
