@@ -7,6 +7,7 @@
   padding: 0;
   background-color: black;
   outline: 2px solid #FFFFFF;
+  cursor: pointer;
   transition: opacity 1s;
 }
 

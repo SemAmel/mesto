@@ -11,6 +11,7 @@
   background-color: black;
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
   transition: opacity 1s;
 }
 
