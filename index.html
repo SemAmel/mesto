@@ -26,53 +26,18 @@
 
       <section class="gallery">
         <ul class="gallery__items">
-          <li class="gallery__item">
-            <img class="gallery__image" src="./images/karachaevsk.jpg" alt="карачаевск">
-            <div class="gallery__description">
-              <h2 class="gallery__place">Карачаевск</h2>
-              <button class="gallery__heart" type="button"></button>
-            </div> 
-          </li>
 
-          <li class="gallery__item">
-            <img class="gallery__image" src="./images/mountain-elbrus.jpg" alt="гора эльбрус">
-            <div class="gallery__description">
-              <h2 class="gallery__place">Гора Эльбрус</h2>
-              <button class="gallery__heart" type="button"></button>
-            </div> 
-          </li>
+          <template id="item">
+            <li class="gallery__item">
+              <img class="gallery__image" alt="картинка места">
+              <div class="gallery__description">
+                <h2 class="gallery__place"></h2>
+                <button class="gallery__heart" type="button"></button>
+              </div>
+              <button class="gallery__trash" type="button"></button>
+            </li>
+          </template>
 
-          <li class="gallery__item">
-            <img class="gallery__image" src="./images/dombay.jpg" alt="домбай">
-            <div class="gallery__description">
-              <h2 class="gallery__place">Домбай</h2>
-              <button class="gallery__heart" type="button"></button>
-            </div> 
-          </li>
-
-          <li class="gallery__item">
-            <img class="gallery__image" src="./images/baikal.jpg" alt="байкал">
-            <div class="gallery__description">
-              <h2 class="gallery__place">Байкал</h2>
-              <button class="gallery__heart" type="button"></button>
-            </div> 
-          </li>
-
-          <li class="gallery__item">
-            <img class="gallery__image" src="./images/iceland.jpg" alt="исландия">
-            <div class="gallery__description">
-              <h2 class="gallery__place">Исландия</h2>
-              <button class="gallery__heart" type="button"></button>
-            </div> 
-          </li>
-
-          <li class="gallery__item">
-            <img class="gallery__image" src="./images/georgia.jpg" alt="грузия">
-            <div class="gallery__description">
-              <h2 class="gallery__place">Грузия</h2>
-              <button class="gallery__heart" type="button"></button>
-            </div> 
-          </li>
         </ul>
       </section>
     </main>
@@ -83,14 +48,34 @@
 
   </div>
 
-  <div class="popup">
-    <div class="popup__container">
+  <div class="popup popup_type_edit-profile">
+    <div class="popup__container transition">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" name="form">
+      <form class="popup__form" name="form_edit-profile">
         <input class="popup__input popup__input_type_name" type="text" name="name">
         <input class="popup__input popup__input_type_about" type="text" name="about">
-        <button class="popup__save-button" type="submit">Сохранить</button>
+        <button class="popup__button popup__button_type_save" type="submit">Сохранить</button>
       </form>
+      <button class="popup__close-button" type="button"></button>
+    </div>
+  </div>
+
+  <div class="popup popup_type_add-item">
+    <div class="popup__container transition">
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form" name="form_add-item">
+        <input class="popup__input popup__input_type_place-name" type="text" name="place-name" placeholder="Название">
+        <input class="popup__input popup__input_type_link" type="text" name="link" placeholder="Ссылка на картинку">
+        <button class="popup__button popup__button_type_create-item" type="submit">Создать</button>
+      </form>
+      <button class="popup__close-button" type="button"></button>
+    </div>
+  </div>
+
+  <div class="popup popup_type_enlargement">
+    <div class="popup__field transition">
+      <img class="popup__big-image" alt="большая картинка места">
+      <h3 class="popup__place-name"></h3>
       <button class="popup__close-button" type="button"></button>
     </div>
   </div>

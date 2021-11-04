@@ -9,6 +9,8 @@
   background-image: url(../../../images/heart.svg);
   cursor: pointer;
   transition: opacity 1s;
+  stroke: black;
+  fill: black;
 }
 
 .gallery__heart:hover {
