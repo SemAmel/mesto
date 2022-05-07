@@ -6,11 +6,11 @@
   z-index: 11;
   justify-self: center;
   align-self: center;
-  margin: auto;
   display: flex;
   flex-direction: column;
   color: black;
   position: relative;
+	cursor: default;
 }
 
 @media all and (max-width: 550px) {

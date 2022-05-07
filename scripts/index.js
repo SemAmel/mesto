@@ -38,6 +38,22 @@ function createCard(place, link){
   return cardElement;
 }
 
+const setEventListenersPopup = () => {
+	const popups = Array.from(document.querySelectorAll('.popup'));
+	popups.forEach((popupElement) => {
+		popupElement.addEventListener('click', (evt) => {
+			if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+				closePopup(popupElement);
+			}
+		});
+		popupElement.addEventListener('keydown', (evt) => {
+			if (evt.key === 'Escape'){
+				closePopup(popupElement);
+			}
+		});
+	});
+};
+
 
 const gallery = document.querySelector('.gallery__items');
 const cardTemplate = gallery.querySelector('#item').content;
@@ -49,6 +65,16 @@ initialCards.forEach((el)=>{
   gallery.append(item);
 });
 
+// ДОБАВЛЕНИЕ СОБЫТИЙ ВСЕМ ФОРМАМ
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+});
+setEventListenersPopup();
 
 
 const profileName = document.querySelector('.profile__name');
@@ -86,14 +112,18 @@ editIcon.addEventListener('click', function (){
   openPopup (popupEditProfile);
   nameInput.value =  profileName.textContent;
   jobInput.value = profileJob.textContent;
-});
 
-buttonClosePopupEditProfile.addEventListener('click', function(){
-  closePopup (popupEditProfile);
+	/* enableValidation({
+		formSelector: '.popup__form',
+		inputSelector: '.popup__input',
+		submitButtonSelector: '.popup__button',
+		inactiveButtonClass: 'popup__button_disabled',
+		inputErrorClass: 'popup__input_type_error',
+		errorClass: 'popup__error_visible'
+	}); */
 });
 
 formPopupEditProfile.addEventListener('submit', function(evt){
-  evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closePopup (popupEditProfile);
@@ -103,16 +133,10 @@ formPopupEditProfile.addEventListener('submit', function(evt){
 
 buttonAddCard.addEventListener('click', function(){
   openPopup(popupAddItem);
-  placeInput.value = null; 
-  linkInput.value = null;
-});
-
-buttonClosePopupAddItem.addEventListener('click', function(){
-  closePopup (popupAddItem);
+  formPopupAddItem.reset();
 });
 
 formPopupAddItem.addEventListener('submit', function(evt){
-  evt.preventDefault();
   const card = createCard(placeInput.value, linkInput.value);
   addCard(card);
   closePopup (popupAddItem);
