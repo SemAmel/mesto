@@ -7,10 +7,9 @@
 	width: 358px;
 	margin-left: 36px;
   margin-top: 5px;
-  min-height: 20px;
+  min-height: 30px;
 	color: #FF0000;
 	visibility: hidden;
-	display: none;
 }
 
 @media all and (max-width: 550px) {
