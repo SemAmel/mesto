@@ -113,14 +113,14 @@ editIcon.addEventListener('click', function (){
   nameInput.value =  profileName.textContent;
   jobInput.value = profileJob.textContent;
 
-	/* enableValidation({
+	enableValidation({
 		formSelector: '.popup__form',
 		inputSelector: '.popup__input',
 		submitButtonSelector: '.popup__button',
 		inactiveButtonClass: 'popup__button_disabled',
 		inputErrorClass: 'popup__input_type_error',
 		errorClass: 'popup__error_visible'
-	}); */
+	});
 });
 
 formPopupEditProfile.addEventListener('submit', function(evt){
