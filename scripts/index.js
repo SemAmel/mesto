@@ -31,13 +31,14 @@ const cardTemplate = gallery.querySelector('#item').content;
 
 
 function openPopup (popup) {
-	popup.addEventListener('keydown', (evt) => {
-		closePopupEscape(evt, popup);
-	});
 	popup.classList.add('popup_opened');
+	document.addEventListener('keydown', closePopupEscape);
+	document.addEventListener('click', closePopupClick);
 }
 
 function closePopup (popup) {
+	document.removeEventListener('keydown', closePopupEscape);
+	document.removeEventListener('click', closePopupClick);
   popup.classList.remove('popup_opened');
 }
 
@@ -64,10 +65,6 @@ function createCard(place, link){
 		openPopupEnlargement(place, link);
 	});
 
-	buttonClosePopupEnlargement.addEventListener('click', function(){
-		closePopup(popupEnlargement);
-	});
-
   return cardElement;
 }
 
@@ -78,10 +75,10 @@ function openPopupEnlargement(place, link){
 	openPopup(popupEnlargement);
 }
 
-function closePopupEscape(evt, popupElement) {
-	console.log(popupElement);
-	if (evt.key === 'Escape'){
-		closePopup(popupElement);
+function closePopupEscape(evt) {
+	const popup = document.querySelector('.popup_opened');
+	if (evt.key === 'Escape' || evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')){
+		closePopup(popup);
 	}
 }
 
@@ -89,9 +86,7 @@ function openPopupEditProfile(){
 	nameInput.value =  profileName.textContent;
   jobInput.value = profileJob.textContent;
 
-	const inputList = Array.from(popupEditProfile.querySelectorAll(validationParameters.inputSelector));
-  const buttonElement = popupEditProfile.querySelector(validationParameters.submitButtonSelector);
-	toggleButtonState(inputList, buttonElement, validationParameters);
+	disableButton(popupEditProfile, validationParameters);
 
 	openPopup(popupEditProfile);
 }
@@ -103,7 +98,7 @@ function closePopupEditProfile(){
 }
 
 function openPopupAddItem(){
-	disableButton(formPopupAddItem, validationParameters);
+	disableButton(popupAddItem, validationParameters);
   formPopupAddItem.reset();
 
 	openPopup(popupAddItem);
@@ -115,16 +110,12 @@ function closePopupAddItem(){
   closePopup (popupAddItem);
 }
 
-const setEventListenersPopup = () => {
-	const popups = Array.from(document.querySelectorAll('.popup'));
-	popups.forEach((popupElement) => {
-		popupElement.addEventListener('click', (evt) => {
-			if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
-				closePopup(popupElement);
-			}
-		});
-	});
-};
+function closePopupClick(evt){
+	const popup = document.querySelector('.popup_opened');
+	if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')){
+		closePopup(popup);
+	}
+}
 
 // СОБЫТИЯ для popup "изменение профиля":
 
@@ -140,7 +131,6 @@ formPopupAddItem.addEventListener('submit', closePopupAddItem);
 
 // ДОБАВЛЕНИЕ СОБЫТИЙ ВСЕМ ФОРМАМ
 enableValidation(validationParameters);
-setEventListenersPopup();
 
 // ДОБАВЛЕНИЕ МЕСТ ПРИ ЗАГРУЗКЕ САЙТА
 
