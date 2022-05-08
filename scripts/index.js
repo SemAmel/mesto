@@ -76,8 +76,8 @@ function openPopupEnlargement(place, link){
 }
 
 function closePopupEscape(evt) {
-  const popup = document.querySelector('.popup_opened');
-  if (evt.key === 'Escape' || evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')){
+  if (evt.key === 'Escape'){
+    const popup = document.querySelector('.popup_opened');
     closePopup(popup);
   }
 }
