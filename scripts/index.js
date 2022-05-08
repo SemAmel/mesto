@@ -31,14 +31,14 @@ const cardTemplate = gallery.querySelector('#item').content;
 
 
 function openPopup (popup) {
-	popup.classList.add('popup_opened');
-	document.addEventListener('keydown', closePopupEscape);
-	document.addEventListener('click', closePopupClick);
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEscape);
+  document.addEventListener('click', closePopupClick);
 }
 
 function closePopup (popup) {
-	document.removeEventListener('keydown', closePopupEscape);
-	document.removeEventListener('click', closePopupClick);
+  document.removeEventListener('keydown', closePopupEscape);
+  document.removeEventListener('click', closePopupClick);
   popup.classList.remove('popup_opened');
 }
 
@@ -62,59 +62,59 @@ function createCard(place, link){
   });
 
   image.addEventListener('click', () => {
-		openPopupEnlargement(place, link);
-	});
+    openPopupEnlargement(place, link);
+  });
 
   return cardElement;
 }
 
 function openPopupEnlargement(place, link){
-	placeName.textContent = place;
+  placeName.textContent = place;
   imageBig.src = link;
 
-	openPopup(popupEnlargement);
+  openPopup(popupEnlargement);
 }
 
 function closePopupEscape(evt) {
-	const popup = document.querySelector('.popup_opened');
-	if (evt.key === 'Escape' || evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')){
-		closePopup(popup);
-	}
+  const popup = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape' || evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')){
+    closePopup(popup);
+  }
 }
 
 function openPopupEditProfile(){
-	nameInput.value =  profileName.textContent;
+  nameInput.value =  profileName.textContent;
   jobInput.value = profileJob.textContent;
 
-	disableButton(popupEditProfile, validationParameters);
+  disableButton(popupEditProfile, validationParameters);
 
-	openPopup(popupEditProfile);
+  openPopup(popupEditProfile);
 }
 
 function closePopupEditProfile(){
-	profileName.textContent = nameInput.value;
+  profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closePopup (popupEditProfile);
 }
 
 function openPopupAddItem(){
-	disableButton(popupAddItem, validationParameters);
+  disableButton(popupAddItem, validationParameters);
   formPopupAddItem.reset();
 
-	openPopup(popupAddItem);
+  openPopup(popupAddItem);
 }
 
 function closePopupAddItem(){
-	const card = createCard(placeInput.value, linkInput.value);
+  const card = createCard(placeInput.value, linkInput.value);
   addCard(card);
   closePopup (popupAddItem);
 }
 
 function closePopupClick(evt){
-	const popup = document.querySelector('.popup_opened');
-	if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')){
-		closePopup(popup);
-	}
+  const popup = document.querySelector('.popup_opened');
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')){
+    closePopup(popup);
+  }
 }
 
 // СОБЫТИЯ для popup "изменение профиля":
