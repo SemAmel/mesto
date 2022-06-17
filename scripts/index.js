@@ -72,7 +72,7 @@ function openPopupAddItem(){
 }
 
 function closePopupAddItem(){
-  const card = createCard(placeInput.value, linkInput.value);
+  const card = new Card(placeInput.value, linkInput.value, cardTemplate).create();
   addCard(card);
   closePopup (popupAddItem);
 }
