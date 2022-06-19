@@ -1,4 +1,5 @@
-import {openPopup} from './index.js';
+import {openPopup} from './popup.js';
+import {popupEnlargement, imageBig, placeName} from './variables.js';
 
 export default class Card{
   constructor(place, link, cardTemplate){
@@ -12,6 +13,7 @@ export default class Card{
     this._cardElement.querySelector('.gallery__place').textContent = this._place;
     this._image = this._cardElement.querySelector('.gallery__image');
     this._image.src = this._link;
+    this._image.alt = this._place;
     this._setEventListeners();
 
     return this._cardElement;
@@ -20,6 +22,7 @@ export default class Card{
   _setEventListeners() {
     this._cardElement.querySelector('.gallery__trash').addEventListener('click', () => {
       this._cardElement.remove();
+      this._cardElement = null;
     });
   
     this._cardElement.querySelector('.gallery__heart').addEventListener('click', () => {
@@ -32,12 +35,10 @@ export default class Card{
   }
   
   _openPopupEnlargement(){
-    this._popupEnlargement = document.querySelector('.popup_type_enlargement');
-    this._imageBig = this._popupEnlargement.querySelector('.popup__big-image');
-    this._placeName = this._popupEnlargement.querySelector('.popup__place-name');
-    this._placeName.textContent = this._place;
-    this._imageBig.src = this._link;
-    openPopup(this._popupEnlargement);
+    placeName.textContent = this._place;
+    imageBig.src = this._link;
+    imageBig.alt = this._place;
+    openPopup(popupEnlargement);
   }
 
 }

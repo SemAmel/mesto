@@ -62,4 +62,10 @@ export default class FormValidator {
     _errorElement.classList.remove(this._validationParameters.errorClass);
     _errorElement.textContent = '';
   }
+
+  disableButton() {
+    this._buttonElement = this._formElement.querySelector(this._validationParameters.submitButtonSelector);
+    this._buttonElement.classList.add(this._validationParameters.inactiveButtonClass);
+    this._buttonElement.setAttribute(this._validationParameters.inactiveButtonAttribute, true);
+  }
 }
