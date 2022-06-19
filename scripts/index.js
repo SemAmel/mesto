@@ -19,9 +19,6 @@ function openPopupEditProfile(){
   nameInput.value =  profileName.textContent;
   jobInput.value = profileJob.textContent;
 
-  const formValidator = new FormValidator(validationParameters, formPopupEditProfile);
-  formValidator.disableButton();
-
   openPopup(popupEditProfile);
 }
 
@@ -32,8 +29,6 @@ function submitPopupEditProfile(){
 }
 
 function openPopupAddItem(){
-  const formValidator = new FormValidator(validationParameters, formPopupAddItem);
-  formValidator.disableButton();
   formPopupAddItem.reset();
 
   openPopup(popupAddItem);
@@ -63,7 +58,14 @@ const formList = Array.from(document.querySelectorAll(validationParameters.formS
 formList.forEach((formElement) => {
   const formValidator = new FormValidator(validationParameters, formElement);
   formValidator.enableValidation();
+  editIcon.addEventListener('click',() => {
+    formValidator.disableButton();
+  });
+  buttonAddCard.addEventListener('click',() =>{
+    formValidator.disableButton();
+  });
 });
+
 // ДОБАВЛЕНИЕ МЕСТ ПРИ ЗАГРУЗКЕ САЙТА
 
 initialCards.forEach((el)=>{
