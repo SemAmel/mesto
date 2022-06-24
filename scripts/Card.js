@@ -1,11 +1,9 @@
-import {openPopup} from './popup.js';
-import {popupEnlargement, imageBig, placeName} from './variables.js';
-
 export default class Card{
-  constructor(place, link, cardTemplate){
+  constructor({place, link, cardTemplate, handleCardClick}){
     this._place = place;
     this._link = link;
     this._cardTemplate = cardTemplate;
+    this._handleCardClick = handleCardClick;
   }
 
   create(){
@@ -30,15 +28,7 @@ export default class Card{
     });
   
     this._image.addEventListener('click', () => {
-      this._openPopupEnlargement();
+      this._handleCardClick(this._place, this._link);
     });
   }
-  
-  _openPopupEnlargement(){
-    placeName.textContent = this._place;
-    imageBig.src = this._link;
-    imageBig.alt = this._place;
-    openPopup(popupEnlargement);
-  }
-
 }

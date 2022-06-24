@@ -1,56 +1,65 @@
 import {initialCards} from './array.js';
-import {validationParameters} from './object.js';
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
-import {openPopup, closePopup} from './popup.js';
-import {profileName, profileJob, editIcon, buttonAddCard, popupEditProfile, formPopupEditProfile, nameInput, jobInput, popupAddItem, formPopupAddItem, placeInput, linkInput, gallery, cardTemplate} from './variables.js';
+import Section from './Section.js';
+// import Popup from './Popup.js';
+import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWithForm.js';
+import UserInfo from './UserInfo.js';
+import {validationParameters, profileName, profileJob, editIcon, buttonAddCard, nameInput, jobInput, gallery, cardTemplate, userNameSelector, userDescriptionSelector} from './constants.js';
 
 
 function createCard(name, link){
-  const card = new Card(name, link, cardTemplate).create();
+  const card = new Card({place: name, link, cardTemplate, 
+    handleCardClick: (name, link) => {
+      const popupWithImage = new PopupWithImage({name, link}, '.popup_type_enlargement');
+      popupWithImage.setEventListeners();
+      popupWithImage.open();
+    }
+  }).create();
   return card;
-}
-
-function addCard (card){
-  gallery.prepend(card);
 }
 
 function openPopupEditProfile(){
   nameInput.value =  profileName.textContent;
   jobInput.value = profileJob.textContent;
 
-  openPopup(popupEditProfile);
-}
-
-function submitPopupEditProfile(){
-  profileName.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
-  closePopup (popupEditProfile);
+  popupEditProfile.open();
 }
 
 function openPopupAddItem(){
-  formPopupAddItem.reset();
-
-  openPopup(popupAddItem);
-}
-
-function submitPopupAddItem(){
-  const card = createCard(placeInput.value, linkInput.value);
-  addCard(card);
-  closePopup (popupAddItem);
+  popupAddItem.open();
 }
 
 // СОБЫТИЯ для popup "изменение профиля":
 
-editIcon.addEventListener('click', openPopupEditProfile);
+const popupEditProfile = new PopupWithForm({
+  handleFormSubmit: ({name, about}) => {
+    const userData = new UserInfo({userNameSelector, userDescriptionSelector});
+    userData.setUserInfo({name, about});
 
-formPopupEditProfile.addEventListener('submit', submitPopupEditProfile);
+    popupEditProfile.close();
+  }
+},'.popup_type_edit-profile');
+
+popupEditProfile.setEventListeners();
+
+editIcon.addEventListener('click', openPopupEditProfile);
 
 // СОБЫТИЯ для popup "добавление места":
 
-buttonAddCard.addEventListener('click', openPopupAddItem);
+const popupAddItem = new PopupWithForm({
+  handleFormSubmit: ({'place-name': name, link}) => {
+    const card = createCard(name, link);
+    cardsSection.addItem(card);
 
-formPopupAddItem.addEventListener('submit', submitPopupAddItem);
+    popupAddItem.close();
+  }
+},'.popup_type_add-item');
+
+popupAddItem.setEventListeners();
+
+buttonAddCard.addEventListener('click', openPopupAddItem);
 
 // ДОБАВЛЕНИЕ СОБЫТИЙ ВСЕМ ФОРМАМ
 
@@ -68,7 +77,11 @@ formList.forEach((formElement) => {
 
 // ДОБАВЛЕНИЕ МЕСТ ПРИ ЗАГРУЗКЕ САЙТА
 
-initialCards.forEach((el)=>{
-  const card = createCard(el.name, el.link);
-  gallery.append(card);
-});
+const cardsSection = new Section({items: initialCards, 
+  renderer: (el) => {
+    const card = createCard(el.name, el.link);
+    cardsSection.addItem(card);
+  }
+}, '.gallery__items');
+
+cardsSection.renderItems();

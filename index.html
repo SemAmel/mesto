@@ -10,18 +10,18 @@
   <div class="page">
     
     <header class="header">
-      <img class="header__logo" src="./images/logo.svg" alt="логотип">
+      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="логотип">
     </header>
 
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="./images/profile-avatar.jpg" alt="ваша аватарка">
+        <img class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>" alt="ваша аватарка">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__about">Исследователь океана</p>
           <button class="profile__edit-button" type="button"></button>
         </div>
-        <button class="profile__add-button" type="button"><img class="profile__plus" src="./images/add-button.svg" alt="плюс"></button>
+        <button class="profile__add-button" type="button"><img class="profile__plus" src="<%=require('./images/add-button.svg')%>" alt="плюс"></button>
       </section>
 
       <section class="gallery">
