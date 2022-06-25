@@ -1,12 +1,12 @@
 # Проект: **Место**
 
-<img src="<%=require('./images/logo-black.svg')%>" width="183" height="32">
+<img src="./images/logo-black.svg" width="183" height="32">
 
 Проект посвящён одностраничному сайту о различных красивых местах.
 
 Используются все знания, которые были получены в ходе 4-8 модуль в курсе **"Веб-разбаботчик"**
 
-<img src="<%=require('./images/readme.logoY/logoY.svg')%>" width="183" height="32">
+<img src="./images/readme.logoY/logoY.svg" width="183" height="32">
 
 ## Описание проекта
 

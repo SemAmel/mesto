@@ -1,20 +1,19 @@
-import '../pages/index.css';
-import {initialCards} from './array.js';
-import FormValidator from './FormValidator.js';
-import Card from './Card.js';
-import Section from './Section.js';
+import './index.css';
+import FormValidator from '../scripts/FormValidator.js';
+import Card from '../scripts/Card.js';
+import Section from '../scripts/Section.js';
 // import Popup from './Popup.js';
-import PopupWithImage from './PopupWithImage.js';
-import PopupWithForm from './PopupWithForm.js';
-import UserInfo from './UserInfo.js';
-import {validationParameters, profileName, profileJob, editIcon, buttonAddCard, nameInput, jobInput, gallery, cardTemplate, userNameSelector, userDescriptionSelector} from './constants.js';
+import PopupWithImage from '../scripts/PopupWithImage.js';
+import PopupWithForm from '../scripts/PopupWithForm.js';
+import UserInfo from '../scripts/UserInfo.js';
+import {initialCards, validationParameters, profileName, profileJob, editIcon, buttonAddCard, nameInput, jobInput, cardTemplate, userNameSelector, userDescriptionSelector} from '../utils/constants.js';
 
 
 function createCard(name, link){
   const card = new Card({place: name, link, cardTemplate, 
     handleCardClick: (name, link) => {
       const popupWithImage = new PopupWithImage({name, link}, '.popup_type_enlargement');
-      popupWithImage.setEventListeners();
+      // popupWithImage.setEventListeners();
       popupWithImage.open();
     }
   }).create();
