@@ -2,7 +2,6 @@ import './index.css';
 import FormValidator from '../scripts/FormValidator.js';
 import Card from '../scripts/Card.js';
 import Section from '../scripts/Section.js';
-// import Popup from './Popup.js';
 import PopupWithImage from '../scripts/PopupWithImage.js';
 import PopupWithForm from '../scripts/PopupWithForm.js';
 import UserInfo from '../scripts/UserInfo.js';
@@ -13,7 +12,7 @@ function createCard(name, link){
   const card = new Card({place: name, link, cardTemplate, 
     handleCardClick: (name, link) => {
       const popupWithImage = new PopupWithImage({name, link}, '.popup_type_enlargement');
-      // popupWithImage.setEventListeners();
+      popupWithImage.setEventListeners();
       popupWithImage.open();
     }
   }).create();
@@ -69,9 +68,11 @@ formList.forEach((formElement) => {
   formValidator.enableValidation();
   editIcon.addEventListener('click',() => {
     formValidator.disableButton();
+    formValidator.disableErrors();
   });
   buttonAddCard.addEventListener('click',() =>{
     formValidator.disableButton();
+    formValidator.disableErrors();
   });
 });
 

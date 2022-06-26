@@ -3,6 +3,7 @@
   opacity: .2;
 	outline: auto black;
   background-color: white;
+  cursor: default;
 }
 
 .popup__button_disabled:hover {

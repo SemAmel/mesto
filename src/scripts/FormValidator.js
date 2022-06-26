@@ -67,4 +67,10 @@ export default class FormValidator {
     this._buttonElement.classList.add(this._validationParameters.inactiveButtonClass);
     this._buttonElement.setAttribute(this._validationParameters.inactiveButtonAttribute, true);
   }
+
+  disableErrors(){
+    this._inputList.forEach((_inputElement) => {
+      this._hideInputError(_inputElement);
+    });
+  }
 }
