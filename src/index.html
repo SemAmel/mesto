@@ -14,7 +14,10 @@
 
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>" alt="ваша аватарка">
+        <div class="profile__avatar-container">
+          <img class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>" alt="ваша аватарка">
+          <button class="profile__edit-avatar-button" type="button"><img class="profile__edit-avatar-img" src="<%=require('./images/big-edit-button.svg')%>" alt="изменить"></button>
+        </div>
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__about">Исследователь океана</p>
@@ -31,7 +34,10 @@
               <img class="gallery__image" alt="картинка места">
               <div class="gallery__description">
                 <h2 class="gallery__place"></h2>
-                <button class="gallery__heart" type="button"></button>
+                <div class="gallery__mark">
+                  <button class="gallery__heart" type="button"></button>
+                  <span class="gallery__count"></span>
+                </div>
               </div>
               <button class="gallery__trash" type="button"></button>
             </li>
@@ -82,5 +88,26 @@
       <button class="popup__close-button" type="button"></button>
     </div>
   </div>
+
+  <div class="popup popup_type_delete">
+    <div class="popup__container">
+      <h2 class="popup__title">Вы уверены?</h2>
+      <button class="popup__button popup__button_type_delete">Да</button>
+      <button class="popup__close-button" type="button"></button>
+    </div>
+  </div>
+
+  <div class="popup popup_type_edit-avatar">
+    <div class="popup__container">
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form class="popup__form" name="form_add-item" novalidate>
+        <input class="popup__input popup__input_type_link" id="input-avatar-link" type="url" name="link" placeholder="Ссылка на картинку" required>
+        <span class="input-avatar-link-error popup__input-error"></span>
+        <button class="popup__button popup__button_type_edit-avatar" type="submit">Сохранить</button>
+      </form>
+      <button class="popup__close-button" type="button"></button>
+    </div>
+  </div>
+
 </body>
 </html>

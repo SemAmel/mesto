@@ -1,29 +1,7 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+
+// ЛИЧНЫЕ ДАННЫЕ ДЛЯ РАБОТЫ С СЕРВЕРОМ
+const url = 'https://mesto.nomoreparties.co/v1/cohort-45';
+const token = '541a5b47-8b22-4068-8020-177c840b7796';
 
 const validationParameters = {
 	formSelector: '.popup__form',
@@ -39,6 +17,7 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__about');
 const editIcon = document.querySelector('.profile__edit-button');
 const buttonAddCard = document.querySelector('.profile__add-button');
+const buttonEditAvatar = document.querySelector('.profile__edit-avatar-button');
 
 
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
@@ -51,5 +30,6 @@ const cardTemplate = gallery.querySelector('#item').content;
 
 const userNameSelector = '.profile__name';
 const userDescriptionSelector = '.profile__about';
+const userAvatarSelector = '.profile__avatar';
 
-export {initialCards, validationParameters, profileName, profileJob, editIcon, buttonAddCard, nameInput, jobInput, cardTemplate, userNameSelector, userDescriptionSelector};
+export {url, token, buttonEditAvatar, validationParameters, profileName, profileJob, editIcon, buttonAddCard, nameInput, jobInput, cardTemplate, userNameSelector, userDescriptionSelector, userAvatarSelector};
