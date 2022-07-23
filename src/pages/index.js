@@ -9,9 +9,10 @@ import PopupWithConfirmation from '../scripts/PopupWithConfirmation.js';
 import Api from '../scripts/Api.js';
 import {url, token, buttonEditAvatar, validationParameters, profileName, profileJob, editIcon, buttonAddCard, nameInput, jobInput, cardTemplate, userNameSelector, userDescriptionSelector, userAvatarSelector} from '../utils/constants.js';
 
+let userId;
 
-function createCard({name, link, likes, _id, owner}){
-  const card = new Card({name, link, likes, _id, owner, cardTemplate, 
+function createCard({ name, link, likes, _id, owner }, userId){
+  const card = new Card({name, link, likes, _id, owner, userId, cardTemplate, 
     handleCardClick: (name, link) => {
       const popupWithImage = new PopupWithImage({name, link}, '.popup_type_enlargement');
       popupWithImage.setEventListeners();
@@ -24,6 +25,9 @@ function createCard({name, link, likes, _id, owner}){
             popupDeleteCard.close();
             resolve();
             handleDeleteCard(_id);
+          },
+          handleCancellationPopupWithConfirmation: () => {
+            reject();
           }
         }, '.popup_type_delete');
       
@@ -35,12 +39,17 @@ function createCard({name, link, likes, _id, owner}){
     handleLikeClick: () => {
       if(card.сheckLike()){
         api.deleteLikeCard(_id)
-          .then((res) => {card.renderLikes(res, false);});
-        
+          .then((res) => {card.renderLikes(res, false);})
+          .catch((err) => {
+            console.log(`${err}`);
+          });
       }
       else{
         api.likeCard(_id)
-          .then((res) => {card.renderLikes(res, true);});
+          .then((res) => {card.renderLikes(res, true);})
+          .catch((err) => {
+            console.log(`${err}`);
+          });
       }
     }
   });
@@ -69,6 +78,10 @@ function handleSetUserInfo(){
       userData.setUserInfo(name, about);
       userData.setAvatar(avatar);
       userData.setId(_id);
+      userId = _id;
+    })
+    .catch((err) => {
+      console.log(`${err}`);
     });
 }
 
@@ -76,6 +89,9 @@ function handleRenderInitialCards(){
   api.getInitialCards()
     .then((res) => {
       cardsSection.renderItems(res.reverse());
+    })
+    .catch((err) => {
+      console.log(`${err}`);
     });
 }
 
@@ -84,7 +100,10 @@ function handleAddCard(cardName, cardLink, render){
   api.addNewCard(cardName, cardLink)
     .then((res) => {
       //const card = createCard(res);
-      cardsSection.addItem(createCard(res));
+      cardsSection.addItem(createCard(res, userId));
+    })
+    .catch((err) => {
+      console.log(`${err}`);
     })
     .finally(() => {
       render(false);
@@ -94,6 +113,9 @@ function handleAddCard(cardName, cardLink, render){
 function handleEditUserAvatar(link, render){
   render(true);
   api.editUserAvatar(link)
+    .catch((err) => {
+      console.log(`${err}`);
+    })
     .finally(() => {
       render(false);
     });
@@ -105,20 +127,29 @@ function handleEditUserInfo(name, about, render){
     .then(({name, about}) => {
       userData.setUserInfo(name, about);
     })
+    .catch((err) => {
+      console.log(`${err}`);
+    })
     .finally(() => {
       render(false);
     });
 }
 
 function handleDeleteCard(cardId){
-  api.deleteCard(cardId);
+  api.deleteCard(cardId)
+    .catch((err) => {
+      console.log(`${err}`);
+    });
 }
 
 // Инициализация класса Api 
 
 const api = new Api({
   baseUrl: url,
-  authorization: token,
+  headers: {
+    authorization: token,
+    'Content-Type': 'application/json'
+  }
 });
 
 // Инициализация класса UserInfo 
@@ -129,7 +160,7 @@ const userData = new UserInfo({userNameSelector, userDescriptionSelector, userAv
 
 const cardsSection = new Section({ 
   renderer: (el) => {
-    const card = createCard(el);
+    const card = createCard(el, userId);
     cardsSection.addItem(card);
   }
 }, '.gallery__items');

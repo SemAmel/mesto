@@ -1,7 +1,18 @@
 export default class Api {
-  constructor({baseUrl, authorization}) {
+  constructor({baseUrl, headers}) {
     this._baseUrl = baseUrl;
-    this._authorization = authorization;
+    this._headers = headers;
+    this._authorization = headers.authorization;
+  }
+
+  _checkResponse(res){
+    if(res.ok){
+      return res.json();
+    }
+    else {
+      //return Promise.reject(res);
+      return res.text().then(text => {throw new Error(text)});
+    }
   }
 
   getInitialUserInfo(){
@@ -10,20 +21,9 @@ export default class Api {
         authorization: `${this._authorization}`
       }
     })
-      .then(res => {
-        if(res.ok){
-          return res.json();
-        }
-        else {
-          return Promise.reject(res.status);
-        }
-      })
+      .then(this._checkResponse)
       .then((res) => {
         return res;
-      })
-      .catch((err) => {
-        // renderError(`Ошибка: ${err}`);
-        console.log(`Ошибка в func "getInitialUserInfo": ${err}`);
       });
   }
 
@@ -33,78 +33,39 @@ export default class Api {
         authorization: `${this._authorization}`
       }
     })
-      .then(res => {
-        if(res.ok){
-          return res.json();
-        }
-        else {
-          return Promise.reject(res.status);
-        }
-      })
+      .then(this._checkResponse)
       .then((res) => {
         return res;
-      })
-      .catch((err) => {
-        // renderError(`Ошибка: ${err}`);
-        console.log(`Ошибка в func "getInitialCards": ${err}`);
       });
   }
 
   editUserInfo(userName, userAbout){
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      headers: {
-        authorization: `${this._authorization}`,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: userName,
         about: userAbout
       })
     })
-      .then(res => {
-        if(res.ok){
-          return res.json();
-        }
-        else {
-          return Promise.reject(res.status);
-        }
-      })
+      .then(this._checkResponse)
       .then((res) => {
         return res;
-      })
-      .catch((err) => {
-        // renderError(`Ошибка: ${err}`);
-        console.log(`Ошибка в func "editUserInfo": ${err}`);
       });
   }
 
   addNewCard(cardName, cardLink){
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
-      headers: {
-        authorization: `${this._authorization}`,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: cardName,
         link: cardLink
       })
     })
-      .then(res => {
-        if(res.ok){
-          return res.json();
-        }
-        else {
-          return Promise.reject(res.status);
-        }
-      })
+      .then(this._checkResponse)
       .then((res) => {
         return res;
-      })
-      .catch((err) => {
-        // renderError(`Ошибка: ${err}`);
-        console.log(`Ошибка в func "addNewCard": ${err}`);
       });
   }
 
@@ -115,14 +76,7 @@ export default class Api {
         authorization: `${this._authorization}`
       },
     })
-      .then(res => {
-        if(res.ok){
-          return true;
-        }
-        else {
-          return Promise.reject(res.status);
-        }
-      })
+      .then(this._checkResponse)
       .catch((err) => {
         // renderError(`Ошибка: ${err}`);
         console.log(`Ошибка в func "deleteCard": ${err}`);
@@ -137,14 +91,7 @@ export default class Api {
         authorization: `${this._authorization}`
       },
     })
-      .then(res => {
-        if(res.ok){
-          return res.json();
-        }
-        else {
-          return Promise.reject(res.status);
-        }
-      })
+      .then(this._checkResponse)
       .then((res) => {
         return res;
       })
@@ -161,14 +108,7 @@ export default class Api {
         authorization: `${this._authorization}`
       }
     })
-      .then(res => {
-        if(res.ok){
-          return res.json();
-        }
-        else {
-          return Promise.reject(res.status);
-        }
-      })
+      .then(this._checkResponse)
       .then((res) => {
         return res;
       })
@@ -181,33 +121,15 @@ export default class Api {
   editUserAvatar(link){
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      headers: {
-        authorization: `${this._authorization}`,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         avatar: link
       })
     })
-      .then(res => {
-        if(res.ok){
-          return true;
-        }
-        else {
-          return Promise.reject(res.status);
-        }
-      })
+      .then(this._checkResponse)
       .catch((err) => {
         // renderError(`Ошибка: ${err}`);
         console.log(`Ошибка в func "": ${err}`);
       });
   }
 }
-
-// const api = new Api({
-//   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-45',
-//   headers: {
-//     authorization: '541a5b47-8b22-4068-8020-177c840b7796',
-//     'Content-Type': 'application/json'
-//   }
-// }); 

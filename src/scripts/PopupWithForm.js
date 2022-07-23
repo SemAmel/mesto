@@ -33,7 +33,6 @@ export default class PopupWithForm extends Popup {
   }
 
   renderSaving(status){
-    console.dir(this._buttonSubmit);
     if (status){
       this._buttonSubmit.textContent = 'Сохранение...';
     }
