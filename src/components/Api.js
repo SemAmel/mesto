@@ -21,10 +21,7 @@ export default class Api {
         authorization: `${this._authorization}`
       }
     })
-      .then(this._checkResponse)
-      .then((res) => {
-        return res;
-      });
+      .then(this._checkResponse);
   }
 
   getInitialCards() {
@@ -33,10 +30,7 @@ export default class Api {
         authorization: `${this._authorization}`
       }
     })
-      .then(this._checkResponse)
-      .then((res) => {
-        return res;
-      });
+      .then(this._checkResponse);
   }
 
   editUserInfo(userName, userAbout){
@@ -48,10 +42,7 @@ export default class Api {
         about: userAbout
       })
     })
-      .then(this._checkResponse)
-      .then((res) => {
-        return res;
-      });
+      .then(this._checkResponse);
   }
 
   addNewCard(cardName, cardLink){
@@ -63,10 +54,7 @@ export default class Api {
         link: cardLink
       })
     })
-      .then(this._checkResponse)
-      .then((res) => {
-        return res;
-      });
+      .then(this._checkResponse);
   }
 
   deleteCard(cardId){
@@ -76,12 +64,7 @@ export default class Api {
         authorization: `${this._authorization}`
       },
     })
-      .then(this._checkResponse)
-      .catch((err) => {
-        // renderError(`Ошибка: ${err}`);
-        console.log(`Ошибка в func "deleteCard": ${err}`);
-        return false;
-      });
+      .then(this._checkResponse);
   }
 
   likeCard(cardId){
@@ -91,14 +74,7 @@ export default class Api {
         authorization: `${this._authorization}`
       },
     })
-      .then(this._checkResponse)
-      .then((res) => {
-        return res;
-      })
-      .catch((err) => {
-        // renderError(`Ошибка: ${err}`);
-        console.log(`Ошибка в func "likeCard": ${err}`);
-      });
+      .then(this._checkResponse);
   }
 
   deleteLikeCard(cardId){
@@ -108,14 +84,7 @@ export default class Api {
         authorization: `${this._authorization}`
       }
     })
-      .then(this._checkResponse)
-      .then((res) => {
-        return res;
-      })
-      .catch((err) => {
-        // renderError(`Ошибка: ${err}`);
-        console.log(`Ошибка в func "": ${err}`);
-      });
+      .then(this._checkResponse);
   }
 
   editUserAvatar(link){
@@ -126,10 +95,6 @@ export default class Api {
         avatar: link
       })
     })
-      .then(this._checkResponse)
-      .catch((err) => {
-        // renderError(`Ошибка: ${err}`);
-        console.log(`Ошибка в func "": ${err}`);
-      });
+      .then(this._checkResponse);
   }
 }

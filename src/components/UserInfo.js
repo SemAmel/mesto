@@ -8,7 +8,7 @@ export default class UserInfo{
   getUserInfo(){
     return {
       name: this._userName.textContent,
-      description: this._userDescription.textContent,
+      about: this._userDescription.textContent,
       avatar: this._userAvatar
     };
   }
@@ -19,16 +19,10 @@ export default class UserInfo{
       };
   }
 
-  setUserInfo(name, about){
+  setUserInfo({name, about, avatar, _id}){
     this._userName.textContent = name;
     this._userDescription.textContent = about;
-  }
-
-  setAvatar(avatar){
     this._userAvatar.src = avatar;
-  }
-
-  setId(id){
-    this._userId = id;
+    this._userId = _id;
   }
 }
